@@ -1,0 +1,5 @@
+# common values
+TRUE = "True"
+FALSE = "False"
+YES = "yes"
+NO = "no"

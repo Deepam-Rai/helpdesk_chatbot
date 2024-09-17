@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>wiki</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("./assets/images/bg.png");
+        }
+
+        .rasa-webchat {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: transparent;
+        }
+
+        .uxie {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            height: 100%;
+            background-size: 30% auto;
+            background-position: 25% center;
+            background-repeat: no-repeat;
+            background-image: url("./assets/images/uxie.png");
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-20px); /* Adjust the value to control the float height */
+            }
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+        }
+
+        .chat-content {
+            flex: 1;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        .rw-pro-widget-embedded {
+            background-color: transparent;
+        }
+        .rw-widget-embedded, .rw-group-message, .rw-message  {
+            background-color: transparent !important;
+        }
+
+        .rw-messages-container {
+            margin: 10px 30px 10px;
+            background-color: transparent !important;
+        }
+        .rw-conversation-container {
+            padding-bottom: 30px;
+            background-color: transparent;
+        }
+
+        .rw-sender {
+            flex-shrink: 0;
+            padding: 10px 30px 10px;
+            border-top: 1px solid #ddd;
+            background-color: transparent;
+            border-radius: 50px;
+            margin: 10px;
+        }
+
+        .chat-title {
+            background-color: transparent;
+            color: #baf1fe;
+            padding: 10px 15px 10px 25px;
+            text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-title h1 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<script>
+!(function () {
+    /**
+     * Handles the chat message box.
+     * Addition of message box on load up.
+     * Also handles user and bot messages for the message box.
+     */
+    let e = document.createElement("script"),
+        t = document.head || document.getElementsByTagName("head")[0];
+    (e.src =
+        "https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js"),
+        (e.async = !0),
+        (e.onload = () => {
+            window.WebChat.default(
+                {
+                    customData: { language: "en" },
+                    socketUrl: "http://localhost:5006",
+                    embedded: true,  // Enable embedded mode
+                    initPayload: '/greet', // Optional: Initial message or action
+                    showFullScreenButton: false, // Disable the fullscreen button if not needed
+                    showCloseButton: true, // Optional: Add a close button if desired
+                    // add other props here
+                },
+                document.querySelector('.chat-content')
+            );
+        }),
+        t.insertBefore(e, t.firstChild);
+})();
+</script>
+<div class="rasa-webchat">
+    <div class="uxie"></div>
+    <div class="chat-title">
+        <h1>Helpdesk</h1>
+    </div>
+    <div class="chat-content">
+    </div>
+</div>
+</body>
+</html>
