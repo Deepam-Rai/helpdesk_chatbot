@@ -27,3 +27,29 @@ nlu:
 - regex: otp
   examples: |
     - \b\d{4}\b
+
+- intent: logout
+  examples: |
+    - I want to log out.
+    - I’d like to log out.
+    - Can you log me out, please?
+    - I want to sign out.
+    - Please log me out.
+    - I’m ready to log out now.
+    - I need to log out now.
+    - Could you help me log out?
+    - I’d like to sign off.
+    - Can you help me log out?
+    - Please sign me out.
+    - I wish to log out of my account.
+    - How do I log out?
+    - I want to logout.
+    - I’d like to logout.
+    - I want to signout.
+    - I’m ready to logout now.
+    - I need to logout now.
+    - Could you help me logout?
+    - I’d like to signoff.
+    - Can you help me logout?
+    - I wish to logout of my account.
+    - How do I logout?

@@ -57,14 +57,14 @@ class ActionSubmitLoginForm(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        user_name = tracker.get_slot(USER_NAME)
         if tracker.get_slot(LOGGED_IN) is True:
             dispatcher.utter_message(response="utter_login_success")
+            logger.debug(f"Logged-in: {user_name}")
         else:
             dispatcher.utter_message(response="utter_login_fail")
-        return [
-            SlotSet(SENT_LOGIN_OTP, None),
-            SlotSet(LOGIN_OTP, None)
-        ]
+            logger.error(f"Log-in failed: {user_name}")
+        return []
 
 
 class ValidateLoginForm(FormValidationAction):

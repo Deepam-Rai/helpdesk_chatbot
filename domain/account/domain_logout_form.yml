@@ -1,0 +1,58 @@
+version: "3.1"
+
+intents:
+  - logout
+
+slots:
+  logout_confirm:
+    type: bool
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+
+forms:
+  logout_form:
+    required_slots:
+      - logout_confirm
+
+actions:
+  - action_ask_logout_confirm
+  - action_submit_logout_form
+
+
+responses:
+  utter_ask_logout_confirm:
+    - text: "Are you sure you want to log-out?"
+    - text: "Do you really want to log out?"
+    - text: "Are you certain you want to log out?"
+    - text: "Are you sure you’d like to sign out?"
+    - text: "Do you want to log out now?"
+    - text: "Confirm if you want to log out, please."
+
+  utter_logged_out:
+    - text: "You have been successfully logged out."
+    - text: "You’ve been logged out successfully."
+    - text: "You’re now logged out."
+    - text: "Successfully signed out."
+    - text: "You’ve logged out. See you next time!"
+    - text: "You’ve been signed out successfully."
+
+  utter_logout_cancelled:
+    - text: "Log-out has been cancelled."
+    - text: "You’ve chosen to stay logged in."
+    - text: "Log-out request cancelled successfully."
+    - text: "You’re still logged in, log-out was cancelled."
+    - text: "Log-out action aborted. You're still signed in."
+
+  utter_not_logged_in:
+    - text: "You are not logged in as any registered user"
+    - text: "You’re not logged in as a registered user."
+    - text: "It seems you’re not signed in under any registered account."
+    - text: "You’re currently not logged in with a registered user account."
+    - text: "You’re not logged in as any recognized user."
+

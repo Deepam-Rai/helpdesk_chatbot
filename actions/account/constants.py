@@ -1,3 +1,5 @@
+# ###############################################
+# login form
 # entities
 OTP = "otp"
 
@@ -7,3 +9,8 @@ USER_NAME = "user_name"
 USER_EMAIL = "user_email"
 LOGIN_OTP = "login_otp"
 LOGGED_IN = "logged_in"
+
+# ###############################################
+# logout form
+# slots
+LOGOUT_CONFIRM = "logout_confirm"

@@ -2,9 +2,14 @@ version: "3.1"
 
 rules:
 
+######################################################
+#                 login rules
+######################################################
 - rule: Activate login_form when user asks to login
   steps:
   - intent: login
+  - slot_was_set:
+      - logged_in: false
   - action: action_start_login
   - action: login_form
   - active_loop: login_form
@@ -18,3 +23,38 @@ rules:
     - slot_was_set:
         - requested_slot: null
     - action: action_submit_login_form
+
+- rule: Rule for login request when user is already logged in.
+  steps:
+    - intent: login
+    - slot_was_set:
+        - logged_in: true
+    - action: action_start_login
+
+######################################################
+#                 logout rules
+######################################################
+- rule: Log-out when user is logged-in
+  steps:
+    - intent: logout
+    - slot_was_set:
+        - logged_in: true
+    - action: logout_form
+    - active_loop: logout_form
+
+- rule: Deactivate logout_form
+  condition:
+    - active_loop: logout_form
+  steps:
+    - action: logout_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_submit_logout_form
+
+- rule: log-out response when user is not logged-in
+  steps:
+    - intent: logout
+    - slot_was_set:
+        - logged_in: false
+    - action: utter_not_logged_in
