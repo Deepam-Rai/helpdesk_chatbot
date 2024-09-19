@@ -1,0 +1,17 @@
+version: "3.1"
+
+nlu:
+- intent: ask_about_bot
+  examples: |
+    - What can you do?
+    - What are you?
+    - What can you help with?
+    - What tasks can you do?
+    - What are your capabilities?
+    - How can you assist me?
+    - What kind of help do you provide?
+    - Who are you?
+    - What exactly are you?
+    - How would you describe yourself?
+    - What kind of assistant are you?
+    - Can you tell me what you are?

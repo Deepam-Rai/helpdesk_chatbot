@@ -1,0 +1,8 @@
+version: "3.1"
+
+rules:
+
+- rule: Tell about bot when asked
+  steps:
+  - intent: ask_about_bot
+  - action: utter_about_bot

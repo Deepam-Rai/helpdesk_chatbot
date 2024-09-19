@@ -12,22 +12,50 @@ intents:
 responses:
   utter_greet:
   - text: "Hey! How are you?"
+  - text: "Hi there! How's it going?"
+  - text: "Hey! How have you been?"
+  - text: "Hello! How are things with you?"
+  - text: "Hey! How’s everything?"
+  - text: "Hi! How are you doing today?"
+  - text: "Hey! How’s your day going?"
+  - text: "Hi there! How are you feeling?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    image: "https://i.imgur.com/hUS7a8m.jpeg"
 
   utter_did_that_help:
   - text: "Did that help you?"
+  - text: "Was that helpful?"
+  - text: "Did that answer your question?"
+  - text: "Does that clear things up?"
+  - text: "Did that solve your issue?"
+  - text: "Is that what you were looking for?"
+  - text: "Did that make things easier?"
 
   utter_happy:
   - text: "Great, carry on!"
+  - text: "Awesome, keep going!"
+  - text: "Great job, keep it up!"
+  - text: "Fantastic, you're on the right track!"
+  - text: "Perfect, continue as you are!"
+  - text: "Excellent, carry on with what you're doing!"
+  - text: "Well done, keep moving forward!"
 
   utter_goodbye:
   - text: "Bye"
+  - text: "Take care!"
+  - text: "Goodbye for now!"
+  - text: "See you later!"
+  - text: "Catch you next time!"
+  - text: "Until next time!"
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+  - text: "I'm a chatbot designed to help, using Rasa as my engine."
+  - text: "I'm a bot here to assist you, running on Rasa's technology."
+  - text: "Powered by Rasa, I'm here as your helpful virtual assistant."
+  - text: "I'm an AI assistant, brought to life with the help of Rasa."
 
 actions:
   - action_restart

@@ -1,0 +1,21 @@
+version: "3.1"
+
+intents:
+  - ask_about_bot
+
+slots:
+  company_name:
+    type: text
+    influence_conversation: false
+    initial_value: "ABC Inc"
+    mappings:
+      - type: custom
+
+responses:
+  utter_about_bot:
+    - text: "I am an AI helpdesk assistant to help you with all sorts of things related to {company_name}."
+    - text: "I'm an AI helpdesk assistant, here to assist you with everything related to {company_name}."
+    - text: "I'm a virtual assistant designed to help you with anything concerning {company_name}."
+    - text: "I'm an AI assistant ready to support you with all things {company_name}."
+    - text: "I'm your AI helpdesk assistant, here to handle any queries about {company_name}."
+    - text: "I’m an AI assistant, here to provide help with anything you need related to {company_name}."

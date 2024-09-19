@@ -1,0 +1,133 @@
+version: "3.1"
+
+entities:
+  - PERSON
+  - email
+  - otp
+
+intents:
+  - login
+  - provide_otp
+
+slots:
+  logged_in:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: PERSON
+        conditions:
+          - active_loop: login_form
+
+  user_email:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: email
+        conditions:
+          - active_loop: login_form
+
+  sent_login_otp:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  login_otp:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: otp
+        conditions:
+          - active_loop: login_form
+            requested_slot: otp
+
+forms:
+  login_form:
+    required_slots:
+      - user_name
+      - user_email
+      - login_otp
+
+actions:
+  - action_start_login
+  - validate_login_form
+  - action_submit_login_form
+  - action_ask_login_otp
+
+responses:
+  utter_start_login:
+    - text: "Sure lets get you logged in!"
+    - text: "Absolutely, let’s get you logged in!"
+    - text: "Of course, I’ll help you log in."
+    - text: "Certainly, we’ll get you signed in right away!"
+    - text: "Sure thing, let’s proceed with logging you in."
+    - text: "Absolutely, let’s get your login sorted out!"
+
+  utter_already_logged_in:
+    - text: "You are already logged in as {user_name}!"
+    - text: "You’re already logged in as {user_name}!"
+    - text: "It looks like you’re already signed in as {user_name}."
+    - text: "You’re currently logged in with the username {user_name}."
+    - text: "You’re already logged in under the name {user_name}."
+    - text: "You’re already signed in as {user_name}."
+
+  utter_ask_user_name:
+    - text: "Could you kindly tell your name?"
+    - text: "Could you please tell me your name?"
+    - text: "May I ask for your name?"
+    - text: "Can you tell me your name, please?"
+
+  utter_ask_user_email:
+    - text: "Got it {user_name}! Please tell your email address"
+    - text: "Ok I'll call you {user_name}! Could you please provide your email address?"
+    - text: "Got it {user_name}! May I have your email address, please?"
+    - text: "Yep got it {user_name}! Can you share your email address with me?"
+    - text: "Sure got it {user_name}! Next please let me know your email address."
+    - text: "Ok {user_name} now could you tell me your email address?"
+
+  utter_otp_shared:
+    - text: "An OTP has been sent to {user_email}."
+    - text: "A one-time password has been sent to {user_email}."
+    - text: "We’ve sent an OTP to your email address {user_email}."
+    - text: "Check your email, {user_email}, for the OTP we just sent."
+    - text: "An OTP has been delivered to {user_email} inbox."
+    - text: "Please check {user_email} inbox for the OTP we sent."
+
+  utter_ask_login_otp:
+    - text: "Please enter the OTP."
+    - text: "Please enter the one-time password."
+    - text: "Kindly input the OTP."
+    - text: "Enter the OTP to proceed."
+    - text: "Please provide the OTP."
+
+  utter_entered_wrong_otp:
+    - text: "Sorry, you seem to have entered wrong OTP. Please try again..."
+    - text: "Sorry, the OTP you entered is incorrect. Please try again."
+    - text: "It looks like the OTP you entered is wrong. Could you please try again?"
+    - text: "The OTP you provided is not correct. Please enter it again."
+    - text: "Oops, that OTP didn’t work. Please try entering it again."
+    - text: "We didn’t recognize that OTP. Please try again."
+
+  utter_login_success:
+    - text: "You have been logged in as {user_name} with {user_email}!"
+    - text: "You’re now logged in as {user_name} with {user_email}!"
+    - text: "Successfully logged in as {user_name} with {user_email}!"
+    - text: "You’ve been signed in as {user_name} with {user_email}!"
+    - text: "You’re now logged in as {user_name} with {user_email}."
+    - text: "You’re all set! You’ve been logged in as {user_name} with {user_email}."
+
+  utter_login_fail:
+    - text: "Login failed."
+    - text: "Login attempt was unsuccessful."
+    - text: "We couldn’t log you in. Please try again later."
+    - text: "Something went wrong with the login."

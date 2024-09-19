@@ -25,6 +25,13 @@ services:
     networks:
       - all
 
+  duckling:
+    image: rasa/duckling
+    ports:
+      - "8000:8000"
+    networks:
+      - all
+
 networks:
   all:
     driver: bridge

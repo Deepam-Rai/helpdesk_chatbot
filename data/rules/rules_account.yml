@@ -1,0 +1,20 @@
+version: "3.1"
+
+rules:
+
+- rule: Activate login_form when user asks to login
+  steps:
+  - intent: login
+  - action: action_start_login
+  - action: login_form
+  - active_loop: login_form
+
+- rule: Deactivate login_form
+  condition:
+    - active_loop: login_form
+  steps:
+    - action: login_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_submit_login_form

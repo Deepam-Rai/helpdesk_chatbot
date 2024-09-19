@@ -1,0 +1,29 @@
+version: "3.1"
+
+nlu:
+- intent: login
+  examples: |
+    - Can you help me login?
+    - I want to login
+    - Could you assist me with logging in?
+    - I need help with the login process.
+    - Can you guide me through the login?
+    - I’m looking to log in. Can you help?
+    - I’d like to log in. What should I do?
+    - I’d like to log in.
+    - I want to access my account.
+    - I’m trying to log in.
+    - Can you help me get logged in?
+    - How do I log in?
+
+- intent: provide_otp
+  examples: |
+    - My OTP is [1234](otp)
+    - The code is [567890](otp)
+    - Here is my OTP: [9876](otp)
+    - OTP is [4321](otp)
+    - It's [654321](otp)
+
+- regex: otp
+  examples: |
+    - \b\d{4}\b
