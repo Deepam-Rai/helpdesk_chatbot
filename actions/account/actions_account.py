@@ -3,8 +3,8 @@ from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-
 from actions.constants import *
+from actions.utils import send_otp
 from .constants import *
 import logging
 
@@ -37,12 +37,16 @@ class ActionAskOTP(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(response="utter_otp_shared")
-        dispatcher.utter_message(response="utter_ask_login_otp")
-        sent_login_otp = "1234"
-        return [
-            SlotSet(SENT_LOGIN_OTP, sent_login_otp)
-        ]
+        return_vals = []
+        if tracker.get_slot(SENT_LOGIN_OTP) is None:
+            dispatcher.utter_message(response="utter_otp_shared")
+            dispatcher.utter_message(response="utter_ask_login_otp")
+            sent_login_otp = send_otp(
+                receiver_email=tracker.get_slot(USER_EMAIL),
+                receiver_name=tracker.get_slot(USER_NAME)
+            )
+            return_vals.append(SlotSet(SENT_LOGIN_OTP, sent_login_otp))
+        return return_vals
 
 
 class ActionSubmitLoginForm(Action):
@@ -57,7 +61,10 @@ class ActionSubmitLoginForm(Action):
             dispatcher.utter_message(response="utter_login_success")
         else:
             dispatcher.utter_message(response="utter_login_fail")
-        return []
+        return [
+            SlotSet(SENT_LOGIN_OTP, None),
+            SlotSet(LOGIN_OTP, None)
+        ]
 
 
 class ValidateLoginForm(FormValidationAction):

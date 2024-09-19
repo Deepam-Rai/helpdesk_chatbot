@@ -68,7 +68,7 @@ responses:
   utter_start_login:
     - text: "Sure lets get you logged in!"
     - text: "Absolutely, let’s get you logged in!"
-    - text: "Of course, I’ll help you log in."
+    - text: "With pleasure, I can help you log in."
     - text: "Certainly, we’ll get you signed in right away!"
     - text: "Sure thing, let’s proceed with logging you in."
     - text: "Absolutely, let’s get your login sorted out!"
