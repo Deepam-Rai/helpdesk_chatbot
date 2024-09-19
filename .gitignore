@@ -1,3 +1,6 @@
+# this project
+actions/credentials.json
+
 # rasa
 .config
 .keras
