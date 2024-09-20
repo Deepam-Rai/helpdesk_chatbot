@@ -8,13 +8,20 @@ RASA helpdesk chatbot.
 Capabilities:
 1. login user on demand
    2. Email OTP verificatoin implemented.
+2. logout user
 
 
 ## Run
-Project is dockerized.
+Project is dockerized.  
+Commands to run:
 ```shell
-make build;
+make build; # for the first time
 
 make train-redeploy-logs;
+
+# to serve a simple UI locally
+make ui;
+
+# to view action logs
 make action-logs;
 ```

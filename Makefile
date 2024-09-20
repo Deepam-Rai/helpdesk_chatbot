@@ -32,3 +32,7 @@ redeploy-logs:
 
 build:
 	docker compose build
+
+
+ui:
+	python -m http.server 7999
