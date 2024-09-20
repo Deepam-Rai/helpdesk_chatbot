@@ -7,6 +7,7 @@ from actions.constants import *
 from .constants import *
 import logging
 
+from ..utils import get_second_previous_action_name
 
 logger = logging.getLogger(__name__)
 
@@ -53,3 +54,22 @@ class ActionSubmitLogoutForm(Action):
         else:
             dispatcher.utter_message(response="utter_logout_cancelled")
         return return_vals
+
+
+class ValidateLogoutForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_logout_form"
+
+    async def required_slots(
+        self,
+        domain_slots: List[Text],
+        dispatcher: "CollectingDispatcher",
+        tracker: "Tracker",
+        domain: "DomainDict",
+    ) -> List[Text]:
+        slots = domain_slots.copy()
+        latest_intent = tracker.get_intent_of_latest_message(skip_fallback_intent=False)
+        second_last_action = get_second_previous_action_name(tracker.events)
+        if latest_intent == CANCEL and second_last_action != ACTION_SUBMIT_CANCEL_FORM:
+            return []
+        return slots

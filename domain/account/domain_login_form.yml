@@ -53,6 +53,8 @@ slots:
 
 forms:
   login_form:
+    ignored_intents:
+      - cancel
     required_slots:
       - user_name
       - user_email

@@ -23,3 +23,6 @@ NO = "no"
 
 # slots
 REQUESTED_SLOT = "requested_slot"
+
+# actions
+ACTION_SUBMIT_CANCEL_FORM = "action_submit_cancel_form"

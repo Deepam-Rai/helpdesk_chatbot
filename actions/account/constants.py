@@ -1,5 +1,7 @@
 # ###############################################
 # login form
+# intents
+CANCEL = "cancel"
 # entities
 OTP = "otp"
 

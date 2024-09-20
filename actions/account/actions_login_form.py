@@ -4,7 +4,7 @@ from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from actions.constants import *
-from actions.utils import send_otp
+from actions.utils import send_otp, get_second_previous_action_name
 from .constants import *
 import logging
 
@@ -22,10 +22,7 @@ class ActionStartLogin(Action):
         tracker: Tracker,
         domain: DomainDict,
     ) -> List[Dict[Text, Any]]:
-        if tracker.get_slot(LOGGED_IN) is True:
-            dispatcher.utter_message(response="utter_already_logged_in")
-        else:
-            dispatcher.utter_message(response="utter_start_login")
+        dispatcher.utter_message(response="utter_start_login")
         return []
 
 
@@ -92,11 +89,23 @@ class ValidateLoginForm(FormValidationAction):
         if tracker.get_slot(REQUESTED_SLOT) == LOGIN_OTP:
             input_otp = slot_value
             sent_otp = tracker.get_slot(SENT_LOGIN_OTP)
-            logger.debug(f"input_otp: {input_otp} type:{type(input_otp)}")
-            logger.debug(f"input_otp: {sent_otp} type:{type(sent_otp)}")
             if input_otp == sent_otp:
                 return {LOGIN_OTP: input_otp, LOGGED_IN: True}
             else:
                 dispatcher.utter_message(response="utter_entered_wrong_otp")
                 return {LOGIN_OTP: None}
         return {LOGIN_OTP: tracker.get_slot(LOGIN_OTP)}
+
+    async def required_slots(
+        self,
+        domain_slots: List[Text],
+        dispatcher: "CollectingDispatcher",
+        tracker: "Tracker",
+        domain: "DomainDict",
+    ) -> List[Text]:
+        slots = domain_slots.copy()
+        latest_intent = tracker.get_intent_of_latest_message(skip_fallback_intent=False)
+        second_last_action = get_second_previous_action_name(tracker.events)
+        if latest_intent == CANCEL and second_last_action != ACTION_SUBMIT_CANCEL_FORM:
+            return []
+        return slots

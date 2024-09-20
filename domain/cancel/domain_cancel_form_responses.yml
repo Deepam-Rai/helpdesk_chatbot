@@ -1,0 +1,31 @@
+version: "3.1"
+
+responses:
+  utter_ask_confirm_cancel:
+    - text: "Do you really want to cancel?"
+    - text: "Are you sure you want to cancel?"
+    - text: "Do you want to proceed with the cancellation?"
+    - text: "Are you certain you’d like to cancel?"
+    - text: "Do you really wish to cancel?"
+    - text: "Would you like to go ahead and cancel?"
+
+  utter_cancel_success:
+    - text: "The action has been cancelled."
+    - text: "Cancellation confirmed."
+    - text: "Successfully cancelled."
+    - text: "It’s been cancelled."
+    - text: "Your request has been cancelled."
+
+  utter_cancel_fail:
+    - text: "The cancellation has been aborted."
+    - text: "Cancellation process stopped."
+    - text: "Your cancellation request was aborted."
+    - text: "The cancellation was not completed."
+    - text: "Cancellation has been successfully aborted."
+
+  utter_nothing_to_cancel:
+    - text: "You are not in process of doing anything that can be cancelled."
+    - text: "There’s no ongoing process to cancel."
+    - text: "You’re not currently doing anything that can be cancelled."
+    - text: "There's nothing in progress to cancel right now."
+    - text: "You aren’t in the middle of any process that can be cancelled."

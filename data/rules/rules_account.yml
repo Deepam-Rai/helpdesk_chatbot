@@ -29,7 +29,7 @@ rules:
     - intent: login
     - slot_was_set:
         - logged_in: true
-    - action: action_start_login
+    - action: utter_already_logged_in
 
 ######################################################
 #                 logout rules

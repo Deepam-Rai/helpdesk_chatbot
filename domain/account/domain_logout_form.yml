@@ -11,17 +11,26 @@ slots:
       - type: from_intent
         value: true
         intent: affirm
+        conditions:
+          - active_loop: logout_form
+            requested_slot: logout_confirm
       - type: from_intent
         value: false
         intent: deny
+        conditions:
+          - active_loop: logout_form
+            requested_slot: logout_confirm
 
 forms:
   logout_form:
+    ignored_intents:
+      - cancel
     required_slots:
       - logout_confirm
 
 actions:
   - action_ask_logout_confirm
+  - validate_logout_form
   - action_submit_logout_form
 
 

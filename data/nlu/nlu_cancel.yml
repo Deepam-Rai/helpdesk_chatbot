@@ -1,0 +1,30 @@
+version: "3.1"
+
+nlu:
+- intent: cancel
+  examples: |
+    - stop
+    - cancel
+    - halt
+    - Lets stop this
+    - Lets do something else
+    - I dont want to do this anymore
+    - Stop doing this
+    - I want to do something else
+    - Let's do this later
+    - Stop this process.
+    - Cancel the operation.
+    - Halt the action.
+    - Let’s put an end to this.
+    - End this now.
+    - Let’s cancel this.
+    - Let’s stop here.
+    - Let us not do this.
+    - Stop the process.
+    - Cancel the operation.
+    - Halt the action.
+    - Let’s stop this now.
+    - Please cancel.
+    - Let’s halt this here.
+    - Stop everything.
+    - I want to cancel this.

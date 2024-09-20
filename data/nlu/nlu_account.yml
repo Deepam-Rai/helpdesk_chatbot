@@ -19,10 +19,10 @@ nlu:
 - intent: provide_otp
   examples: |
     - My OTP is [1234](otp)
-    - The code is [567890](otp)
-    - Here is my OTP: [9876](otp)
-    - OTP is [4321](otp)
-    - It's [654321](otp)
+    - The code is 5678
+    - Here is my OTP: 9876
+    - OTP is 4321
+    - It's 4321
 
 - regex: otp
   examples: |

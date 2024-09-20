@@ -4,6 +4,8 @@ import smtplib
 import json
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from typing import List, Dict, Any
+
 from .constants import *
 import logging
 
@@ -96,3 +98,22 @@ def send_otp(receiver_email: str, receiver_name: str = "User") -> str:
     )
     logger.debug(f"OTP sent to {receiver_email}")
     return otp
+
+
+def get_previous_action_name(events: List[Dict[str, Any]], previous_count=-1):
+    action_events = [
+        event.get("name")
+        for event in events
+        if event.get("event") == "action" and event.get("name") != "action_listen"
+    ]
+    logger.debug(f"events: {action_events}")
+    return action_events[previous_count]
+
+
+def get_second_previous_action_name(events: List[Dict[str, Any]]):
+    action_events = [
+        event.get("name")
+        for event in events
+        if event.get("event") == "action" and event.get("name") != "action_listen"
+    ]
+    return action_events[-2]

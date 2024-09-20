@@ -1,0 +1,41 @@
+version: "3.1"
+
+intents:
+  - cancel
+  - start_cancel_form
+
+slots:
+  confirm_cancel:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        value: true
+        intent: affirm
+        conditions:
+          - active_loop: cancel_form
+            requested_slot: confirm_cancel
+      - type: from_intent
+        value: false
+        intent: deny
+        conditions:
+          - active_loop: cancel_form
+            requested_slot: confirm_cancel
+
+  to_cancel:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+
+forms:
+  cancel_form:
+    required_slots:
+      - confirm_cancel
+
+actions:
+  - action_pre_cancel
+  - validate_cancel_form
+  - action_ask_confirm_cancel
+  - action_submit_cancel_form

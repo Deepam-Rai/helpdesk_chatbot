@@ -1,0 +1,25 @@
+version: "3.1"
+
+rules:
+- rule: Activate cancel form
+  steps:
+    - intent: start_cancel_form
+    - action: cancel_form
+    - active_loop: cancel_form
+
+- rule: Deactivate cancel form
+  condition:
+    - active_loop: cancel_form
+  steps:
+    - action: cancel_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_submit_cancel_form
+
+- rule: on cancel request
+  steps:
+    - intent: cancel
+    - action: action_pre_cancel
+    - action: cancel_form
+    - active_loop: cancel_form

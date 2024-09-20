@@ -19,6 +19,12 @@ restart-core:
 restart-action:
 	docker compose restart action-server
 
+start-action:
+	docker compose up action-server -d
+
+start-duckling:
+	docker compose up duckling -d
+
 train-redeploy-logs:
 	make -f Makefile train
 	make -f Makefile stop
@@ -35,4 +41,8 @@ build:
 
 
 ui:
+	echo "http://localhost:7999/"
 	python -m http.server 7999
+
+visualize:
+	rasa visualize --domain domain

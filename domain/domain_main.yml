@@ -10,6 +10,14 @@ intents:
   - bot_challenge
 
 responses:
+  utter_default_fallback:
+    - text: "Sorry I didn't get that. Can you rephrase?"
+    - text: "I didn’t quite understand. Could you say that differently?"
+    - text: "I’m sorry, I didn’t catch that. Can you explain it again?"
+    - text: "I didn’t get that. Could you reword it, please?"
+    - text: "Sorry, I’m not clear on that. Can you rephrase it?"
+    - text: "I didn’t follow you. Can you put that another way?"
+
   utter_greet:
   - text: "Hey! How are you?"
   - text: "Hi there! How's it going?"
@@ -59,6 +67,7 @@ responses:
 
 actions:
   - action_restart
+  - action_default_fallback
 
 session_config:
   session_expiration_time: 60
