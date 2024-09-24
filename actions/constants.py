@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 # parameters
 OTP_LENGTH = 4
@@ -11,9 +12,10 @@ CREDENTIALS_PARAMS = {  # logs error if these are not present in CREDENTIALS_FIL
 
 # files
 CREDENTIALS_FILE = "credentials.json"
+NLU_FALLBACKS_FILE = "nlu_fallbacks.json"
 
 # paths
-APP_PATH = os.path.dirname(os.path.abspath(__file__))
+APP_PATH = Path(os.path.dirname(os.path.abspath(__file__)))
 
 # common values
 TRUE = "True"

@@ -118,3 +118,25 @@ def get_second_previous_action_name(events: List[Dict[str, Any]]):
         if event.get("event") == "action" and event.get("name") != "action_listen"
     ]
     return action_events[-2]
+
+
+def log_fallback(tracker_event: dict):
+    f"""
+    Appends the tracker event into {NLU_FALLBACKS_FILE} file.
+    :param tracker_event:
+    :return:
+    """
+    log_file = APP_PATH / "logs" / NLU_FALLBACKS_FILE
+    try:
+        with open(log_file, 'r') as file:
+            data = json.load(file)
+        if isinstance(data, list):
+            data.append(tracker_event)
+        else:
+            raise TypeError(f"{NLU_FALLBACKS_FILE} data is not a list, cannot append.")
+    except FileNotFoundError:
+        data = [tracker_event]
+
+    with open(log_file, 'w') as file:
+        json.dump(data, file, indent=4)
+    logger.debug(f"New fallback logged in {NLU_FALLBACKS_FILE}")

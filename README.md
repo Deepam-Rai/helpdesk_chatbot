@@ -7,8 +7,11 @@ RASA helpdesk chatbot.
 
 Capabilities:
 1. login user on demand
-   2. Email OTP verificatoin implemented.
+   1. Email OTP verificatoin implemented.
 2. logout user
+3. Cancelling ongoing proces - login, logout, etc.
+4. Two-stage handling for out-of-scope user inputs. 
+   1. On consecutive second nlu_fallback, logs the latest_message to `actions/logs/nlu_fallback.json` for future reference.
 
 
 ## Run

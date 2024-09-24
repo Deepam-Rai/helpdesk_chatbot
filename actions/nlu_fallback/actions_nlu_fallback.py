@@ -20,13 +20,14 @@ class ActionHandleFallback(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         second_last_action = get_previous_action_name(tracker.events, log=False)
         logger.warning(f"Inside {self.name()}")
-        logger.warning(f"latest_message: {tracker.latest_message}")
+        logger.warning(f"latest_message: {tracker.latest_message.get('text')}")
         if second_last_action != self.name():
             # nlu_fallback first time
             dispatcher.utter_message(response="utter_ask_rephrase")
         else:
             # nlu_fallback consecutive second time
             dispatcher.utter_message(response="utter_handle_fallback")
+            log_fallback(tracker.latest_message)
         return [
             UserUtteranceReverted(),
         ]
