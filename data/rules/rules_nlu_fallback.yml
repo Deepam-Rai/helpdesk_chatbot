@@ -1,0 +1,7 @@
+version: "3.1"
+
+rules:
+- rule: On 1st fallback - ask to rephrase, On 2nd - handle(currently logging for future ref)
+  steps:
+  - intent: nlu_fallback
+  - action: action_handle_fallback

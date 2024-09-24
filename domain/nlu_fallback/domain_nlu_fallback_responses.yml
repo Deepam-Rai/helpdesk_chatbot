@@ -1,0 +1,18 @@
+version: "3.1"
+
+responses:
+  utter_ask_rephrase:
+    - text: "Sorry I didn't get that. Can you rephrase?"
+    - text: "I didn’t quite understand. Could you say that differently?"
+    - text: "I’m sorry, I didn’t catch that. Can you explain it again?"
+    - text: "I didn’t get that. Could you reword it, please?"
+    - text: "Sorry, I’m not clear on that. Can you rephrase it?"
+    - text: "I didn’t follow you. Can you put that another way?"
+
+  utter_handle_fallback:
+    - text: "I'm sorry, I couldn't catch what you meant. So that I can handle better in future, this case will be logged and informed to developers"
+    - text: "Apologies, I couldn’t understand that. I’ll log this issue and notify the developers so we can improve in the future."
+    - text: "Sorry, I didn’t quite catch that. This case will be recorded and shared with the developers to enhance my responses."
+    - text: "My apologies, I wasn’t able to understand. I’ll make sure this is logged and reported to the developers for future improvement."
+    - text: "I’m sorry, I couldn’t process that. I’ll document this and inform the developers to help improve future interactions."
+    - text: "Sorry about that! I couldn’t understand your request. I’ll log this and notify the developers to make improvements."

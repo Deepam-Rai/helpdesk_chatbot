@@ -100,13 +100,14 @@ def send_otp(receiver_email: str, receiver_name: str = "User") -> str:
     return otp
 
 
-def get_previous_action_name(events: List[Dict[str, Any]], previous_count=-1):
+def get_previous_action_name(events: List[Dict[str, Any]], previous_count=-1, log=True):
     action_events = [
         event.get("name")
         for event in events
         if event.get("event") == "action" and event.get("name") != "action_listen"
     ]
-    logger.debug(f"events: {action_events}")
+    if log:
+        logger.debug(f"events: {action_events}")
     return action_events[previous_count]
 
 
