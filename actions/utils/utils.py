@@ -2,6 +2,7 @@ import os
 import secrets
 import smtplib
 import json
+from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import List, Dict, Any
@@ -34,7 +35,7 @@ def send_email(receiver_email: str, subject: str = "", body: str = "") -> bool:
     sender_pass = EMAIL_PASSWORD
     logger.debug(f"username: {EMAIL_USERNAME} password: {EMAIL_PASSWORD}")
     if sender_email is None or sender_pass is None:
-        missing_vars = [var for var in [EMAIL_USERNAME, EMAIL_PASSWORD] if var not in globals()]
+        missing_vars = [var for var in [EMAIL_USERNAME, EMAIL_PASSWORD] if var is None]
         raise EnvironmentError(f"Missing required environment variables for sending an email: {missing_vars}")
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -96,6 +97,18 @@ def get_second_previous_action_name(events: List[Dict[str, Any]]):
         if event.get("event") == "action" and event.get("name") != "action_listen"
     ]
     return action_events[-2]
+
+
+def get_timestamp():
+    return f"{datetime.fromtimestamp(datetime.timestamp(datetime.now())).isoformat()}"
+
+
+def get_timestamp_date():
+    return f"{datetime.fromtimestamp(datetime.timestamp(datetime.now())).date().isoformat()}"
+
+
+def get_timestamp_time():
+    return f"{datetime.fromtimestamp(datetime.timestamp(datetime.now())).time().isoformat()}"
 
 
 def log_fallback(tracker_event: dict):

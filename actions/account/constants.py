@@ -1,3 +1,7 @@
+# activities
+LOGIN = "login"
+LOGOUT = "logout"
+
 # ###############################################
 # login form
 # intents

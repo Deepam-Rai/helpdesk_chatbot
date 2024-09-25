@@ -4,10 +4,13 @@ from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from actions.constants import *
+from actions.constants_database import *
 from .constants import *
 import logging
 
-from actions.utils.utils import get_second_previous_action_name
+from actions.utils.utils import get_second_previous_action_name, get_timestamp
+from ..utils.utils_database import insert_row
+from ..utils.utils_environment import DB_SCHEMA
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +50,19 @@ class ActionSubmitLogoutForm(Action):
         logout_confirm = tracker.get_slot(LOGOUT_CONFIRM)
         if logout_confirm:
             dispatcher.utter_message(response="utter_logged_out")
+            insert_values = {
+                COL_NAME: tracker.get_slot(USER_NAME),
+                COL_EMAIL: tracker.get_slot(USER_EMAIL),
+                COL_ACTIVITY: LOGOUT,
+                COL_TIME: get_timestamp()
+            }
+            is_inserted, row_id = insert_row(
+                TABLE_LOGIN_HISTORY,
+                data=insert_values,
+                schema=DB_SCHEMA,
+                returning_id=COL_ID
+            )
+            logger.debug(f"is inserted: {is_inserted}" f"table-name: {TABLE_LOGIN_HISTORY}  row_id:{row_id}")
             return_vals += [
                 AllSlotsReset(),
                 Restarted()
