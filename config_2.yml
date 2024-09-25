@@ -30,13 +30,13 @@ pipeline:
   - name: SpacyEntityExtractor
     dimensions: ["PERSON"]
   - name: DIETClassifier
-    epochs: 100
+    epochs: 600
     batch_strategy: balanced
   - name: EntitySynonymMapper
   - name: ResponseSelector
     featurizers: [ "convert", "cvf-word" ]
     constrain_similarities: true
-    epochs: 100
+    epochs: 600
   - name: FallbackClassifier
     threshold: 0.4
     ambiguity_threshold: 0.1
@@ -50,6 +50,6 @@ policies:
      core_fallback_action_name: "action_handle_fallback"
      enable_fallback_prediction: True
    - name: TEDPolicy
-     max_history: 5
-     epochs: 100
+     max_history: 8
+     epochs: 600
      constrain_similarities: true

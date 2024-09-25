@@ -18,7 +18,7 @@ services:
     volumes:
       - ./actions:/app/actions
     environment:
-      - DB_OPS=True
+      - DEV_ENV=local
     command: bash -c "rasa run actions --port \"5056\" --debug"
     ports:
       - "5056:5056"

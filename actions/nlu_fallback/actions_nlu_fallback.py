@@ -1,9 +1,8 @@
-from typing import Any, Text, Dict, List
+from typing import Text
 from rasa_sdk import Action, Tracker
-from rasa_sdk.events import Restarted, AllSlotsReset, UserUtteranceReverted, SlotSet
+from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
-from actions.utils import *
-from .constants import *
+from actions.utils.utils import *
 import logging
 
 

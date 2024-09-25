@@ -3,12 +3,7 @@ from pathlib import Path
 
 # parameters
 OTP_LENGTH = 4
-EMAIL_USERNAME = "EMAIL_USERNAME"
-EMAIL_PASSWORD = "EMAIL_PASSWORD"
-CREDENTIALS_PARAMS = {  # logs error if these are not present in CREDENTIALS_FILE
-    EMAIL_USERNAME,
-    EMAIL_PASSWORD
-}
+
 
 # files
 CREDENTIALS_FILE = "credentials.json"

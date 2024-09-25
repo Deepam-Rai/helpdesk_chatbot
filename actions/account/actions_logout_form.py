@@ -7,7 +7,7 @@ from actions.constants import *
 from .constants import *
 import logging
 
-from ..utils import get_second_previous_action_name
+from actions.utils.utils import get_second_previous_action_name
 
 logger = logging.getLogger(__name__)
 

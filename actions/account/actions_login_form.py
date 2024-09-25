@@ -4,7 +4,7 @@ from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from actions.constants import *
-from actions.utils import send_otp, get_second_previous_action_name
+from actions.utils.utils import send_otp, get_second_previous_action_name
 from .constants import *
 import logging
 

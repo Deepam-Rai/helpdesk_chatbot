@@ -5,35 +5,12 @@ import json
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import List, Dict, Any
-
-from .constants import *
+from actions.utils.utils_environment import *
+from actions.constants import *
 import logging
 
 
 logger = logging.getLogger(__name__)
-
-
-def init_environment() -> dict:
-    f"""
-    Reads credentials from {CREDENTIALS_FILE} and loads them as environment variable.
-    Also logs error if some necessary config_params not found.
-    :return: config as dict or {{"Error": error}} if failed.
-    """
-    try:
-        creds = json.load(open(os.path.join(APP_PATH, CREDENTIALS_FILE), 'r'))
-        for param in CREDENTIALS_PARAMS:
-            if param not in creds:
-                logger.error(f"ERROR: Incomplete {CREDENTIALS_FILE} file, {param} not found")
-            else:
-                os.environ[param] = str(creds[param])
-        return creds
-    except Exception as e:
-        logger.error(f"Error while reading {CREDENTIALS_FILE}: {repr(e)}")
-        logger.error(f"The file should contain following data: {CREDENTIALS_PARAMS}")
-        return {"Error": e}
-
-
-init_environment()
 
 
 def generate_otp(length: int = 4) -> str:
@@ -53,10 +30,11 @@ def send_email(receiver_email: str, subject: str = "", body: str = "") -> bool:
     :param body:
     :return:
     """
-    sender_email = os.getenv(EMAIL_USERNAME)
-    sender_pass = os.getenv(EMAIL_PASSWORD)
+    sender_email = EMAIL_USERNAME
+    sender_pass = EMAIL_PASSWORD
+    logger.debug(f"username: {EMAIL_USERNAME} password: {EMAIL_PASSWORD}")
     if sender_email is None or sender_pass is None:
-        missing_vars = [var for var in [EMAIL_USERNAME, EMAIL_PASSWORD] if os.getenv(var) is None]
+        missing_vars = [var for var in [EMAIL_USERNAME, EMAIL_PASSWORD] if var not in globals()]
         raise EnvironmentError(f"Missing required environment variables for sending an email: {missing_vars}")
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -81,7 +59,7 @@ def send_otp(receiver_email: str, receiver_name: str = "User") -> str:
     :return: OTP sent to the user.
     """
     otp = generate_otp(length=OTP_LENGTH)
-    sender_email = os.getenv(EMAIL_USERNAME)
+    sender_email = EMAIL_USERNAME
     send_email(
         receiver_email=receiver_email,
         subject="OTP",
