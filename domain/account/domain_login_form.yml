@@ -2,8 +2,7 @@ version: "3.1"
 
 entities:
   - PERSON
-  - email
-  - otp
+
 
 intents:
   - login
@@ -17,51 +16,37 @@ slots:
     mappings:
       - type: custom
 
-  user_name:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_entity
-        entity: PERSON
-        conditions:
-          - active_loop: login_form
-
   user_email:
     type: text
     influence_conversation: false
     mappings:
       - type: from_entity
         entity: email
+        not_intent:
+          - cancel
         conditions:
+          - active_loop: signup_form
+            requested_slot: user_email
           - active_loop: login_form
+            requested_slot: user_email
 
-  sent_login_otp:
+  user_password:
     type: text
     influence_conversation: false
     mappings:
-      - type: custom
-
-  login_otp:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_entity
-        entity: otp
+      - type: from_text
         conditions:
           - active_loop: login_form
-            requested_slot: otp
+            requested_slot: user_password
+
 
 forms:
   login_form:
-    ignored_intents:
-      - cancel
     required_slots:
-      - user_name
       - user_email
-      - login_otp
+      - user_password
 
 actions:
   - action_start_login
   - validate_login_form
   - action_submit_login_form
-  - action_ask_login_otp

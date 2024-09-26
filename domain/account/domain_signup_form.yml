@@ -1,0 +1,77 @@
+version: "3.1"
+
+intents:
+  - signup
+  - general_signup_intent
+
+entities:
+  - email
+  - otp
+  - user_role
+
+
+slots:
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: PERSON
+        not_intent:
+          - cancel
+        conditions:
+          - active_loop: signup_form
+
+  user_role:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: user_role
+        not_intent:
+          - cancel
+        conditions:
+          - active_loop: signup_form
+            requested_slot: user_role
+
+  sent_signup_otp:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  signup_otp:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: otp
+        not_intent:
+          - cancel
+        conditions:
+          - active_loop: signup_form
+            requested_slot: signup_otp
+
+  signup_password:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: signup_form
+            requested_slot: signup_password
+
+forms:
+  signup_form:
+    required_slots:
+      - user_name
+      - user_role
+      - user_email
+      - signup_otp
+      - signup_password
+
+actions:
+  - action_start_signup
+  - validate_signup_form
+  - action_submit_signup_form
+  - action_ask_signup_otp

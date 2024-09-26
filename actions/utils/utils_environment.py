@@ -55,8 +55,6 @@ logger.debug(f'DEV_ENV: {DEV_ENV}')
 
 LOCAL_DB_CREDS = DATABASE.get(LOCAL_DB_CREDS, {})
 DB_SCHEMA = DATABASE.get(DB_SCHEMA, None)
-logger.debug(DATABASE)
-logger.debug(DB_SCHEMA)
 
 
 if DEV_ENV == LOCAL_ENV:

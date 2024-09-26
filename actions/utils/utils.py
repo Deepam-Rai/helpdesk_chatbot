@@ -33,7 +33,6 @@ def send_email(receiver_email: str, subject: str = "", body: str = "") -> bool:
     """
     sender_email = EMAIL_USERNAME
     sender_pass = EMAIL_PASSWORD
-    logger.debug(f"username: {EMAIL_USERNAME} password: {EMAIL_PASSWORD}")
     if sender_email is None or sender_pass is None:
         missing_vars = [var for var in [EMAIL_USERNAME, EMAIL_PASSWORD] if var is None]
         raise EnvironmentError(f"Missing required environment variables for sending an email: {missing_vars}")

@@ -82,3 +82,41 @@ def insert_row(
     fetch_id = None if returning_id is None else cursor.fetchone()[0]
     cursor.close()
     return (True, fetch_id) if row_count > 0 else (False, None)
+
+
+def retrieve_rows(
+        table_name: str,
+        conditions: dict,
+        schema: str,
+) -> dict:
+    """
+    Returns rows that fullfill the conditions.
+    :param table_name:
+    :param conditions:
+    :param schema:
+    :return:
+    """
+    cursor = db_connection.cursor(cursor_factory=extras.RealDictCursor)
+    try:
+        where_clause = []
+        values = []
+        for col, val in conditions.items():
+            where_clause.append(f"{col} = %s")
+            values.append(val)
+        where_clause = " AND ".join(where_clause)
+        query = f"SELECT * from \"{schema}\".\"{table_name}\" WHERE {where_clause}"
+        cursor.execute(query, tuple(values))
+    except (psycopg2.OperationalError, psycopg2.InterfaceError) as error:
+        logger.error("Error: %s" % error)
+        logger.error("db_connection has closed unexpectedly. Reconnecting...")
+        reconnect()
+        logger.debug("Retrying the operation.")
+        return retrieve_rows(table_name, conditions, schema)
+    except (Exception, psycopg2.DatabaseError) as error:
+        logger.error("Error: %s" % error)
+        cursor.execute("rollback")
+        cursor.close()
+        return {}
+    all_data = cursor.fetchall()
+    cursor.close()
+    return all_data

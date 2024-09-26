@@ -1,8 +1,24 @@
 version: "3.1"
 
 nlu:
+- intent: signup
+  examples: |
+    - signup
+    - sign up
+    - I want to signup
+    - How do i sign up?
+    - I’d like to sign up.
+    - Can you help me sign up?
+    - I want to create an account.
+    - How do I get started with signing up?
+    - What’s the process to sign up?
+    - How can I register for an account?
+    - Could you guide me through signing up?
+
 - intent: login
   examples: |
+    - login
+    - log in
     - Can you help me login?
     - I want to login
     - Could you assist me with logging in?
@@ -10,11 +26,12 @@ nlu:
     - Can you guide me through the login?
     - I’m looking to log in. Can you help?
     - I’d like to log in. What should I do?
-    - I’d like to log in.
+    - I’d like to login.
     - I want to access my account.
-    - I’m trying to log in.
+    - I’m trying to login.
     - Can you help me get logged in?
     - How do I log in?
+    - Help me login.
 
 - intent: provide_otp
   examples: |
@@ -30,6 +47,8 @@ nlu:
 
 - intent: logout
   examples: |
+    - logout
+    - log out
     - I want to log out.
     - I’d like to log out.
     - Can you log me out, please?

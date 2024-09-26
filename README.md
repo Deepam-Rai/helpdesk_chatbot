@@ -6,10 +6,20 @@ RASA helpdesk chatbot.
 2. Uses additional [rasa/duckling](https://hub.docker.com/r/rasa/duckling) container for entity extraction.  
 
 Capabilities:
-1. login, logout user on demand
-   1. Email OTP verificatoin implemented.
-2. Database Integration:
-   1. Login/logout activities are stored in hosted [PostgreSQL](https://www.postgresql.org/) database.
+1. Typical procedures:
+   1. signup
+      1. Needs name, email, user role, new password.
+      2. Email OTP verification.
+      3. Doesn't allow already registered users.
+      4. User details saved in database.
+   2. login
+      1. Needs email, password.
+      2. Password crosschecked with set password in database.
+      2. Only allows registered users.
+   3. logout
+2. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
+   1. Login/logout activities stored.
+   2. User details stored.
 3. Cancelling ongoing process - login, logout, etc.
 4. Two-stage handling for out-of-scope user inputs. 
    1. On consecutive second nlu_fallback, logs the latest_message to `actions/logs/nlu_fallback.json` for future reference.

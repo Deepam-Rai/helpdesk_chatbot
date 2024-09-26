@@ -1,6 +1,34 @@
 version: "3.1"
 
 rules:
+######################################################
+#                 signup rules
+######################################################
+- rule: Activate signup_form when user asks to signup
+  steps:
+  - intent: signup
+  - slot_was_set:
+      - logged_in: false
+  - action: action_start_signup
+  - action: signup_form
+  - active_loop: signup_form
+
+- rule: Deactivate signup_form
+  condition:
+    - active_loop: signup_form
+  steps:
+    - action: signup_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_submit_signup_form
+
+- rule: Rule for signup request when user is already logged in.
+  steps:
+    - intent: signup
+    - slot_was_set:
+        - logged_in: true
+    - action: utter_already_logged_in
 
 ######################################################
 #                 login rules

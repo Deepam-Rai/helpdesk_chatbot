@@ -1,0 +1,70 @@
+version: "3.1"
+
+responses:
+  utter_start_signup:
+    - text: "Absolutely, let’s get you signed up!"
+    - text: "Sure thing, let’s start the sign-up process!"
+    - text: "Of course, let’s get you registered!"
+    - text: "Sounds good, let’s get you signed up right away!"
+    - text: "Sure, let's begin your sign-up!"
+
+  utter_ask_user_role:
+    - text: "Please choose who you are to continue:"
+      buttons:
+        - title: "Staff"
+          payload: /general_signup_intent{{"user_role":"staff"}}
+        - title: "Customer"
+          payload: /general_signup_intent{{"user_role":"customer"}}
+
+  utter_already_registered_email:
+    - text: "The email {email} is already registered with an account."
+    - text: "An account with the email {email} already exists."
+    - text: "The email {email} has already been used to create an account."
+    - text: "It looks like {email} is already associated with an existing account."
+    - text: "This email {email} is already in use."
+    - text: "An account with {email} is already set up."
+
+
+  utter_otp_shared:
+    - text: "An OTP has been sent to {user_email}."
+    - text: "A one-time password has been sent to {user_email}."
+    - text: "We’ve sent an OTP to your email address {user_email}."
+    - text: "Check your email, {user_email}, for the OTP we just sent."
+    - text: "An OTP has been delivered to {user_email} inbox."
+    - text: "Please check {user_email} inbox for the OTP we sent."
+
+  utter_ask_signup_otp:
+    - text: "Please enter the OTP."
+    - text: "Please enter the one-time password."
+    - text: "Kindly input the OTP."
+    - text: "Enter the OTP to proceed."
+    - text: "Please provide the OTP."
+
+  utter_entered_wrong_otp:
+    - text: "Sorry, you seem to have entered wrong OTP. Please try again..."
+    - text: "Sorry, the OTP you entered is incorrect. Please try again."
+    - text: "It looks like the OTP you entered is wrong. Could you please try again?"
+    - text: "The OTP you provided is not correct. Please enter it again."
+    - text: "Oops, that OTP didn’t work. Please try entering it again."
+    - text: "We didn’t recognize that OTP. Please try again."
+
+  utter_signup_success:
+    - text: "You’re all set! You’ve been signed up as {user_name} with {user_email}."
+    - text: "Success! You’re now signed up as {user_name} using {user_email}."
+    - text: "Welcome aboard! You’ve been registered as {user_name} with {user_email}."
+    - text: "Great! You’ve successfully signed up as {user_name} with the email {user_email}."
+    - text: "You’ve successfully signed up as {user_name} with the email address {user_email}."
+
+  utter_signup_fail:
+    - text: "Oops! Signup failed! 😥"
+    - text: "Sorry, something went wrong with the signup! 😥"
+    - text: "Signup didn’t work. Please try again! 😥"
+    - text: "Uh-oh! Signup failed! 😕"
+    - text: "Unfortunately, the signup didn’t go through. 😥"
+
+  utter_ask_signup_password:
+    - text: "Kindly enter a new password for this account:"
+    - text: "Please provide a new password for your account:"
+    - text: "Enter a new password to update your account:"
+    - text: "Please set a new password for your account:"
+    - text: "Input a new password for this account to proceed:"
