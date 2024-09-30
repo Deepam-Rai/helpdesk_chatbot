@@ -160,3 +160,33 @@ def get_users_list() -> List:
         SCHEMA_HELPDESK
     )
     return users
+
+
+def get_user_details(conditions: dict) -> List:
+    f"""
+    Fetches details of user(s) with specific given conditions.
+    :return:
+    """
+    users = retrieve_rows(
+        TABLE_USERS,
+        conditions=conditions,
+        schema=SCHEMA_HELPDESK
+    )
+    return users
+
+
+def mask_user_details(
+        user_details: dict,
+        mask: list = None
+):
+    f"""
+    Masks given details from user_details
+    :param user_details: 
+    :param mask: Default values:
+        [{COL_PASSWORD}]
+    :return: 
+    """
+    mask = mask or [COL_PASSWORD]
+    for to_mask in mask:
+        user_details[to_mask] = "••••••••"
+    return user_details

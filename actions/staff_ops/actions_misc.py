@@ -47,7 +47,7 @@ class ActionListUsers(Action):
         for user in users_list:
             btn = {
                 "title": f"{user[COL_NAME]} | {user[COL_EMAIL]}",
-                "payload": f"/show_details{{\"email\":\"{user[COL_EMAIL]}\"}}"
+                "payload": f"/{SHOW_USER_DETAILS}{{\"email\":\"{user[COL_EMAIL]}\"}}"
             }
             buttons.append(btn)
         dispatcher.utter_message(text=text, buttons=buttons)

@@ -18,8 +18,17 @@ FALSE = "False"
 YES = "yes"
 NO = "no"
 
+# entities
+EMAIL = "email"
+
 # slots
 REQUESTED_SLOT = "requested_slot"
+ONGOING_PROCESS = "ongoing_process"
 
 # actions
 ACTION_SUBMIT_CANCEL_FORM = "action_submit_cancel_form"
+
+# intents
+from actions.user_ops.constants import (
+    CANCEL
+)

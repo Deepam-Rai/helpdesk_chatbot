@@ -1,8 +1,8 @@
 {
   "roles": ["role_staff", "role_customer"],
-  "actions": ["permission_list_users"],
+  "actions": ["permission_list_users", "show_user_details"],
   "permissions": {
-      "role_staff": ["permission_list_users"],
+      "role_staff": ["permission_list_users", "permission_show_user_details"],
       "role_customer": []
   }
 }

@@ -36,6 +36,10 @@ redeploy-logs:
 	make -f Makefile run
 	make -f Makefile core-logs
 
+action-redeploy-logs:
+	make restart-action
+	make action-logs
+
 build:
 	docker compose build
 

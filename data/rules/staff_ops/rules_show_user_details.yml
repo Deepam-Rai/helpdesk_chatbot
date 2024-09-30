@@ -1,0 +1,29 @@
+version: "3.1"
+
+rules:
+- rule: Activate show_user_details_form
+  steps:
+    - intent: show_user_details
+    - action: action_pre_show_details
+    - slot_was_set:
+        - ongoing_process: show_user_details_form
+    - action: show_user_details_form
+    - active_loop: show_user_details_form
+
+- rule: Deactivate show_user_details_form
+  condition:
+    - active_loop: show_user_details_form
+  steps:
+    - action: show_user_details_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_submit_show_user_details_form
+
+- rule: Ask user_details but now allowed
+  steps:
+    - intent: show_user_details
+    - action: action_pre_show_details
+    - slot_was_set:
+        - ongoing_process: null
+    - action: utter_offer_help

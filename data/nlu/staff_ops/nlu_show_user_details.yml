@@ -1,0 +1,15 @@
+version: "3.1"
+
+nlu:
+  - intent: show_user_details
+    examples: |
+      - Can you show user details of this user
+      - Show details of this user
+      - Show everything about this user
+      - Can you show the details for this user?
+      - Show the details of this user.
+      - Display all information about this user.
+      - Can you provide the full details of this user?
+      - Show everything related to this user.
+
+

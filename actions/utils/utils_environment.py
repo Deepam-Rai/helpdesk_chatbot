@@ -55,6 +55,8 @@ ROLE_STAFF = "role_staff"
 ROLE_CUSTOMER = "role_customer"
 # permissions
 PERMISSION_LIST_USERS = "permission_list_users"
+PERMISSION_SHOW_USER_DETAILS = "permission_show_user_details"
+
 try:
     IAM = json.load(open(APP_PATH / IAM_FILE, 'r'))
 except Exception as e:

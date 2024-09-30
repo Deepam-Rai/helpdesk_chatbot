@@ -1,0 +1,44 @@
+version: "3.1"
+
+intents:
+  - show_user_details
+
+slots:
+  details_email:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: email
+        conditions:
+          - active_loop: show_user_details_form
+
+forms:
+  show_user_details_form:
+    ignored_intents:
+      - cancel
+    required_slots:
+      - details_email
+
+actions:
+  - action_pre_show_details
+  - action_submit_show_user_details_form
+  - validate_show_user_details_form
+
+
+responses:
+  utter_ask_details_email:
+    - text: "Please provide the email of the user, whose details you want to know."
+    - text: "Please provide the email of the user whose details you’d like to view."
+    - text: "Kindly share the email of the user whose details you want to check."
+    - text: "Enter the email of the user you want to get details for."
+    - text: "Please provide the email address of the user you want information on."
+    - text: "Could you give the email of the user whose details you need?"
+
+  utter_no_user_found:
+    - text: "No user found with given parameters."
+    - text: "No user found matching the given parameters."
+    - text: "We couldn't find any user with the provided details."
+    - text: "No user matches the specified parameters."
+    - text: "No user found based on the provided information."
+    - text: "Sorry, no user was found with the given criteria."

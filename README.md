@@ -8,9 +8,9 @@
   <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=plastic" alt="Python Badge" height="22">
 </div>
 
-
+----
 # helpdesk_chatbot
-RASA helpdesk chatbot.
+[RASA(OpenSource)](https://rasa.com/docs/rasa/#rasa-open-source) helpdesk chatbot.
 
 
 Capabilities:
@@ -26,6 +26,8 @@ Capabilities:
       2. Only allows registered users.
    3. logout
    4. list users
+      1. Only users with required access can execute.
+   5. show user details
       1. Only users with required access can execute.
     
 2. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
@@ -58,3 +60,16 @@ make ui;
 # to view action logs
 make action-logs;
 ```
+
+----
+# RASA features used
+
+| Feature                 | Used in                                                                                     |
+|-------------------------|---------------------------------------------------------------------------------------------|
+| API Integrations        | Used, inside custom actions, for database management, OTP verfications,etc.                 |
+| Customized pipeline | Used pipelines pipeline components suited for the usecase: spacy components, duckling, etc. |
+| Handling `nlu_fallback` | Implemented custom two-stage-fallback.                                                      |
+| Forms                   | Typical procedures are implemented as forms.                                                |
+| Custom Actions          | Used in forms and other misc actions. Includes `validation` actions as well.                |
+| Rules, stories, slots.  | Part and parcel of using and integrating forms.                                             |
+
