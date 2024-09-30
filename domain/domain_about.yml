@@ -7,7 +7,7 @@ slots:
   company_name:
     type: text
     influence_conversation: false
-    initial_value: "ABC Inc"
+    initial_value: "ZZ Inc"
     mappings:
       - type: custom
 

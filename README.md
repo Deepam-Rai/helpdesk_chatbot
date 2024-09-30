@@ -30,14 +30,16 @@ Capabilities:
    5. show user details
       1. Only users with required access can execute.
     
-2. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
+2. Messaging platforms integration:
+   1. Telegram integration
+3. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
    1. Login/logout activities stored.
    2. User details stored.
-3. Access Management:
+4. Access Management:
    1. Users have assigned roles and each role has different set of access permissions suited to their needs.
    2. Config file: `actions/IAM.json`
-4. Cancelling ongoing process - login, logout, etc.
-5. Two-stage handling for out-of-scope user inputs. 
+5. Cancelling ongoing process - login, logout, etc.
+6. Two-stage handling for out-of-scope user inputs. 
    1. On 1st fallback: Asks user to rephrase their sentence.
    2. If bot fails to recognize even after 1st fallback: Sends appropriate utter to user and logs the latest_message to `actions/logs/nlu_fallback.json` for future reference.
   
@@ -61,15 +63,33 @@ make ui;
 make action-logs;
 ```
 
+Telegram integration([tutorial](https://youtu.be/QuyWEbKMzcA?si=g8Lwcys52gwt48o5)):
+```shell
+# 1. Start ngrok and expose the rasa-core-server to public internet
+make ngrok;
+# 2. Copy the ngrok url and put in "telegram" section of `credentials.yml`, after uncommenting that section
+# 3. Fill in the required token, verify id fields too
+# 4. Start the bot as usual
+make train-redeploy-logs
+# 5. Send usual messages from your telegram bot
+```
+
 ----
 # RASA features used
 
 | Feature                 | Used in                                                                                     |
 |-------------------------|---------------------------------------------------------------------------------------------|
-| API Integrations        | Used, inside custom actions, for database management, OTP verfications,etc.                 |
+| API Integrations        | 1. Telegram integration.<br/>2. Database - PostgreSQL integration.                          |
 | Customized pipeline | Used pipelines pipeline components suited for the usecase: spacy components, duckling, etc. |
 | Handling `nlu_fallback` | Implemented custom two-stage-fallback.                                                      |
 | Forms                   | Typical procedures are implemented as forms.                                                |
 | Custom Actions          | Used in forms and other misc actions. Includes `validation` actions as well.                |
 | Rules, stories, slots.  | Part and parcel of using and integrating forms.                                             |
 
+
+----
+# References
+- Telegram integration:
+  - [Droid City](https://www.youtube.com/@DroidCity) : [Integrate Rasa With Telegram Chatbot](https://youtu.be/QuyWEbKMzcA?si=w6HU4dkwmBY--hZz)
+  - [Official rasa docs](https://rasa.com/docs/rasa-pro/connectors/telegram/).
+- 

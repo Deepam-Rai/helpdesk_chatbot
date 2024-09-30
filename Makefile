@@ -40,6 +40,10 @@ action-redeploy-logs:
 	make restart-action
 	make action-logs
 
+ngrok:
+	ngrok http 5006
+	#ngrok http 5006 --domain=your-static-domain.ngrok-free.app
+
 build:
 	docker compose build
 

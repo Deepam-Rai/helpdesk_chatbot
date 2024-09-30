@@ -7,6 +7,8 @@ services:
       - "5006:5006"
     volumes:
       - ./:/app
+    environment:
+      - RASA_TELEMETRY_ENABLED=false
     command: bash -c "rasa run --enable-api --cors \"*\" --debug --model models/helpdesk_model.tar.gz --port \"5006\""
     networks:
       - all
