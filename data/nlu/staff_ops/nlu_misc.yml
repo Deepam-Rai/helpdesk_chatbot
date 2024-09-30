@@ -1,0 +1,17 @@
+version: "3.1"
+
+nlu:
+  - intent: list_users
+    examples: |
+      - List users
+      - list all users please
+      - show all users
+      - can you list the users?
+      - show me all the users?
+      - Display the list of users.
+      - Can you show me the user list?
+      - List all users, please.
+      - Show all registered users.
+      - Could you provide the list of users?
+      - I’d like to see all users.
+      - Can you display the users?

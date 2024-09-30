@@ -18,5 +18,6 @@ RUN pip install websocket-client==1.6.1
 RUN pip install websockets==10.0
 RUN pip install rasa[spacy]
 RUN python -m spacy download en_core_web_md
+RUN pip install prettytable
 # COPY . /app/
 # COPY ./actions /app/actions

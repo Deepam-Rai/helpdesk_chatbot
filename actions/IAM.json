@@ -1,0 +1,8 @@
+{
+  "roles": ["role_staff", "role_customer"],
+  "actions": ["permission_list_users"],
+  "permissions": {
+      "role_staff": ["permission_list_users"],
+      "role_customer": []
+  }
+}

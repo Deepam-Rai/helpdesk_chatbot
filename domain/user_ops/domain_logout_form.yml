@@ -44,12 +44,12 @@ responses:
     - text: "Confirm if you want to log out, please."
 
   utter_logged_out:
-    - text: "You have been successfully logged out."
-    - text: "You’ve been logged out successfully."
-    - text: "You’re now logged out."
-    - text: "Successfully signed out."
-    - text: "You’ve logged out. See you next time!"
-    - text: "You’ve been signed out successfully."
+    - text: "You have been successfully logged out {user_name}."
+    - text: "You’ve been logged out successfully {user_name}."
+    - text: "You’re now logged out {user_name}."
+    - text: "Successfully signed out {user_name}."
+    - text: "You’ve logged out. See you next time {user_name}!"
+    - text: "You’ve been signed out successfully {user_name}."
 
   utter_logout_cancelled:
     - text: "Log-out has been cancelled."

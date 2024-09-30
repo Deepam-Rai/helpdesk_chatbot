@@ -1,3 +1,4 @@
+
 ----
 
 <div align="center">
@@ -24,12 +25,19 @@ Capabilities:
       2. Password crosschecked with set password in database.
       2. Only allows registered users.
    3. logout
+   4. list users
+      1. Only users with required access can execute.
+    
 2. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
    1. Login/logout activities stored.
    2. User details stored.
-3. Cancelling ongoing process - login, logout, etc.
-4. Two-stage handling for out-of-scope user inputs. 
-   1. On consecutive second nlu_fallback, logs the latest_message to `actions/logs/nlu_fallback.json` for future reference.
+3. Access Management:
+   1. Users have assigned roles and each role has different set of access permissions suited to their needs.
+   2. Config file: `actions/IAM.json`
+4. Cancelling ongoing process - login, logout, etc.
+5. Two-stage handling for out-of-scope user inputs. 
+   1. On 1st fallback: Asks user to rephrase their sentence.
+   2. If bot fails to recognize even after 1st fallback: Sends appropriate utter to user and logs the latest_message to `actions/logs/nlu_fallback.json` for future reference.
   
 
 ## Setup & Run

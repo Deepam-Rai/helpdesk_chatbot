@@ -88,7 +88,7 @@ def retrieve_rows(
         table_name: str,
         conditions: dict,
         schema: str,
-) -> dict:
+) -> List:
     """
     Returns rows that fullfill the conditions.
     :param table_name:
@@ -98,13 +98,15 @@ def retrieve_rows(
     """
     cursor = db_connection.cursor(cursor_factory=extras.RealDictCursor)
     try:
-        where_clause = []
+        query = f"SELECT * from \"{schema}\".\"{table_name}\""
         values = []
-        for col, val in conditions.items():
-            where_clause.append(f"{col} = %s")
-            values.append(val)
-        where_clause = " AND ".join(where_clause)
-        query = f"SELECT * from \"{schema}\".\"{table_name}\" WHERE {where_clause}"
+        if len(conditions) > 0:
+            where_clause = []
+            for col, val in conditions.items():
+                where_clause.append(f"{col} = %s")
+                values.append(val)
+            where_clause = " AND ".join(where_clause)
+            query += f" WHERE {where_clause};"
         cursor.execute(query, tuple(values))
     except (psycopg2.OperationalError, psycopg2.InterfaceError) as error:
         logger.error("Error: %s" % error)
@@ -116,7 +118,7 @@ def retrieve_rows(
         logger.error("Error: %s" % error)
         cursor.execute("rollback")
         cursor.close()
-        return {}
+        return []
     all_data = cursor.fetchall()
     cursor.close()
     return all_data

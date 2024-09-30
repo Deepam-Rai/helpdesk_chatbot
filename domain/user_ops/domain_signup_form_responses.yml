@@ -12,9 +12,9 @@ responses:
     - text: "Please choose who you are to continue:"
       buttons:
         - title: "Staff"
-          payload: /general_signup_intent{{"user_role":"staff"}}
+          payload: /general_signup_intent{{"user_role":"role_staff"}}
         - title: "Customer"
-          payload: /general_signup_intent{{"user_role":"customer"}}
+          payload: /general_signup_intent{{"user_role":"role_customer"}}
 
   utter_already_registered_email:
     - text: "The email {email} is already registered with an account."

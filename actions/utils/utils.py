@@ -8,6 +8,7 @@ from email.mime.multipart import MIMEMultipart
 from typing import List, Dict, Any
 from actions.utils.utils_environment import *
 from actions.constants import *
+from .utils_database import *
 import logging
 
 
@@ -130,3 +131,32 @@ def log_fallback(tracker_event: dict):
     with open(log_file, 'w') as file:
         json.dump(data, file, indent=4)
     logger.debug(f"New fallback logged in {NLU_FALLBACKS_FILE}")
+
+
+def get_user_role(email: str) -> List[str]:
+    """
+    :param email: Role for whom role is to be fetched.
+    :return: Returns role, or None if invalid email
+    """
+    user_details = retrieve_rows(
+        TABLE_USERS,
+        {
+            COL_EMAIL: email,
+        },
+        SCHEMA_HELPDESK
+    )
+    role = None if len(user_details) < 1 else user_details[-1][COL_ROLE]
+    return [role]
+
+
+def get_users_list() -> List:
+    f"""
+    Fetches the rows from {TABLE_USERS} and returns.
+    :return:
+    """
+    users = retrieve_rows(
+        TABLE_USERS,
+        {},
+        SCHEMA_HELPDESK
+    )
+    return users

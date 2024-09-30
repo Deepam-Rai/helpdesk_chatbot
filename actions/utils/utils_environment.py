@@ -48,6 +48,19 @@ def init_variables() -> dict:
 
 init_variables()
 
+# set roles and permissions:
+IAM = None
+# roles
+ROLE_STAFF = "role_staff"
+ROLE_CUSTOMER = "role_customer"
+# permissions
+PERMISSION_LIST_USERS = "permission_list_users"
+try:
+    IAM = json.load(open(APP_PATH / IAM_FILE, 'r'))
+except Exception as e:
+    logger.error(f"Error while setting IAM from file: {APP_PATH/IAM_FILE}\nError: {e}")
+logger.debug(f"IAM policy: {IAM}")
+
 
 # set database variables
 DEV_ENV = os.getenv("DEV_ENV")  # DEV_ENV is set in docker_compose.yml

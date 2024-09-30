@@ -1,0 +1,7 @@
+version: "3.1"
+
+rules:
+  - rule: List users
+    steps:
+      - intent: list_users
+      - action: action_list_users

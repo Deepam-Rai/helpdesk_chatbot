@@ -4,9 +4,9 @@ from pathlib import Path
 # parameters
 OTP_LENGTH = 4
 
-
 # files
 CREDENTIALS_FILE = "credentials.json"
+IAM_FILE = "IAM.json"
 NLU_FALLBACKS_FILE = "nlu_fallbacks.json"
 
 # paths

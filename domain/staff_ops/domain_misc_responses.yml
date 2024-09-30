@@ -1,0 +1,17 @@
+version: "3.1"
+
+responses:
+  utter_login_first:
+    - text: "Kindly log in first."
+    - text: "Please sign in before proceeding."
+    - text: "You need to log in first."
+    - text: "Please log into your account first."
+    - text: "Log in to continue."
+    - text: "Sign in to proceed."
+
+  utter_not_authorized:
+    - text: "Apologies, {user_name}, you don’t have permission for this action."
+    - text: "Sorry, {user_name}, you aren’t allowed to perform this action."
+    - text: "Unfortunately {user_name}, you’re not authorized to complete this action."
+    - text: "Sorry, {user_name}, but you’re not permitted to perform this action."
+    - text: "Sorry, {user_name}, but you do not have the required authorization for this action."

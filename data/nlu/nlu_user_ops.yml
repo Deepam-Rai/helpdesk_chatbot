@@ -19,6 +19,10 @@ nlu:
   examples: |
     - login
     - log in
+    - signin
+    - sign in
+    - sign in me
+    - signin me
     - Can you help me login?
     - I want to login
     - Could you assist me with logging in?
