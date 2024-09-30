@@ -5,6 +5,8 @@
   <img src="https://img.shields.io/badge/Rasa-5A17EE?logo=rasa&logoColor=fff&style=plastic" alt="Rasa Badge" height="22">
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=plastic" alt="PostgreSQL Badge" height="22">
   <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=plastic" alt="Docker Badge" height="22">
+   <img src="https://img.shields.io/badge/Telegram-26A5E4?logo=telegram&logoColor=fff&style=plastic" alt="Telegram Badge" height="22">
+   <img src="https://img.shields.io/badge/Gmail-EA4335?logo=gmail&logoColor=fff&style=plastic" alt="Gmail Badge" height="22">
   <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=plastic" alt="Python Badge" height="22">
 </div>
 
@@ -23,7 +25,7 @@ Capabilities:
    2. login
       1. Needs email, password.
       2. Password crosschecked with set password in database.
-      2. Only allows registered users.
+      3. Only allows registered users.
    3. logout
    4. list users
       1. Only users with required access can execute.
@@ -31,7 +33,7 @@ Capabilities:
       1. Only users with required access can execute.
     
 2. Messaging platforms integration:
-   1. Telegram integration
+   1. [Telegram](https://telegram.org/)
 3. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
    1. Login/logout activities stored.
    2. User details stored.
@@ -92,4 +94,4 @@ make train-redeploy-logs
 - Telegram integration:
   - [Droid City](https://www.youtube.com/@DroidCity) : [Integrate Rasa With Telegram Chatbot](https://youtu.be/QuyWEbKMzcA?si=w6HU4dkwmBY--hZz)
   - [Official rasa docs](https://rasa.com/docs/rasa-pro/connectors/telegram/).
-- 
+- Badges: https://badges.pages.dev/
