@@ -89,6 +89,20 @@ make train-redeploy-logs
 | Rules, stories, slots.  | Part and parcel of using and integrating forms.                                             |
 
 
+
+----
+# Code management
+## Automated deployments
+Push to `main` triggers dummy github action for **QA deployment**.  
+Tagged release triggers dummy github action for **PROD deployment**.
+```shell
+# tagged releases
+# create annotated tag
+git tag -a v1.0.0 -m "Release message."
+# push tag and trigger PROD deployment
+git push origin v1.0.0
+```
+
 ----
 # References
 - Telegram integration:
