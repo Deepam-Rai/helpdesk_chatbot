@@ -37,8 +37,8 @@ Capabilities:
 3. Database Integration([PostgreSQL](https://www.postgresql.org/) database):
    1. Login/logout activities stored.
    2. User details stored.
-4. Access Management:
-   1. Users have assigned roles and each role has different set of access permissions suited to their needs.
+4. Role Based Access Control:
+   1. Users are assigned specific roles and each role has different set of access permissions suited to their needs.
    2. Config file: `actions/IAM.json`
 5. Cancelling ongoing process - login, logout, etc.
 6. Two-stage handling for out-of-scope user inputs. 
@@ -95,3 +95,5 @@ make train-redeploy-logs
   - [Droid City](https://www.youtube.com/@DroidCity) : [Integrate Rasa With Telegram Chatbot](https://youtu.be/QuyWEbKMzcA?si=w6HU4dkwmBY--hZz)
   - [Official rasa docs](https://rasa.com/docs/rasa-pro/connectors/telegram/).
 - Badges: https://badges.pages.dev/
+- Github actions triggers: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#running-your-workflow-only-when-a-push-of-specific-tags-occurs
+- 
